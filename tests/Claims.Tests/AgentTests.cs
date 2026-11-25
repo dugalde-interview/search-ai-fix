@@ -25,10 +25,7 @@ public class AgentTests
         Assert.Empty(Repo().Search(1, "' OR 1=1 --"));
     }
 
-    [Fact]
-    public void Search_ExactMatchOnly_BlocksWildcardEnumeration()
-    {
-        // Partial matches are blocked, so nobody can list claims by guessing a few letters.
-        Assert.Empty(Repo().Search(1, "dental"));
-    }
+    // Removed Search_ExactMatchOnly_BlocksWildcardEnumeration (MYT-3108 review): it asserted that "dental"
+    // finds nothing, which contradicts FINDING.md ("contains" search). Replaced by
+    // MyTests.Search_FindsPartialMatches_InDescriptionOrProvider_AnyCase.
 }
